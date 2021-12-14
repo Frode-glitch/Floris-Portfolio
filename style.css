@@ -117,3 +117,17 @@
 	display: none;
 }
 
+.home{
+    height: 721px;
+     background-color: rgba(0, 0, 0, 0.2);
+}
+
+.blend{
+    margin: auto;
+    top: auto;
+    bottom: auto;
+    text-align: center;
+    width: 20%;
+    word-wrap: break-word;
+    font-size: 4em;
+}
