@@ -123,9 +123,14 @@
 }
 
 .blend{
+    position: fixed;
     margin: auto;
-    top: auto;
-    bottom: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
     text-align: center;
     width: 20%;
     word-wrap: break-word;
