@@ -5,7 +5,7 @@ var Projects = [
 <p id="map"><b>Klik hier naast op een van de mapjes om projecten te openen!</b><p>
 <h2>Over Mij</h2>
 <img src="pic/selfie.png" alt="">
-<p>Mijn naam is Floris Puts en ben 20 jaar.Nadat ik de mbo opleiding elektrotechniek heb afgerond ben gestart op Sint Lucas in Eindhoven.Ik volg daar de opleiding software development. Ik woon in Koningsbosch samen met mijn ouders en broertje. Ik zit op scouting als leider van de scouts en progammeer soms in mijn vrije tijd.</p>
+<p>Mijn naam is Floris Puts en ben 20 jaar.Nadat ik de mbo opleiding elektrotechniek heb afgerond, ben ik gestart op Sint Lucas in Eindhoven.Ik volg daar de opleiding software development. Ik woon in Koningsbosch samen met mijn ouders en broertje. Ik zit op scouting als leider van de scouts en progammeer soms in mijn vrije tijd.</p>
 </div>`,
 `<div class="animation">
 <h2>Arcadegame</h2>
