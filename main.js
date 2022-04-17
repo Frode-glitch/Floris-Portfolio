@@ -45,7 +45,7 @@ var Projects = [
 `<div class="animation">
 <h2>Scouting site</h2>
 <img src="pic/scoutingweb.png" alt="">
-<p>Ik zit op scouting als leiding en doe de opleiding software developer. Onze orginele site kunnen wij niet meer aanpassen dus werd ik gevraagd om een nieuwe site te maken voor onze scouting. De site is nog niet af, ik ben er nog aan het werken. Het uiteindelijke doel is dat wij berichten op de site kunnen zetten, dat leden foto's kunnen bekijken en kleding kunnen bestellen.</p>
+<p>Ik zit op scouting bij de leiding. Onze orginele site kunnen wij niet meer aanpassen dus werd ik gevraagd om een nieuwe site te maken voor onze scouting. De site is nog niet af, ik ben er nog aan het werken. Het uiteindelijke doel is dat wij berichten op de site kunnen zetten, dat leden foto's kunnen bekijken en kleding kunnen bestellen.</p>
 <a target="_blank" href="https://scoutingkoningsbosch.000webhostapp.com/">link van de scouting site</a>
 </div>`,
 `<div class="animation">
