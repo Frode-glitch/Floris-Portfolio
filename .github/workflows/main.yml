@@ -7,7 +7,6 @@ on:
 
 jobs:
   deploy:
-    # Specify your self-hosted runner label
     runs-on: self-hosted
 
     steps:
@@ -15,13 +14,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Deploy to server
-      - name: Deploy to server
-        uses: burnett01/rsync-deployments@5.1
-        with:
-          switches: -avzr --delete
-          path: ./ # Path to your HTML and CSS files
-          remote_path: ${{ vars.SERVER_PATH }}
-          remote_host: ${{ vars.SERVER_HOST }}
-          remote_user: ${{ vars.SERVER_USER }}
-          ssh_private_key: ${{ secrets.DEPLOY_KEY }}
+      # Step 2: Deploy using PowerShell and SCP
+      - name: Deploy to server using SCP
+        run: |
+          # Define variables
+          $ServerHost = "${{ vars.SERVER_HOST }}"
+          $ServerUser = "${{ vars.SERVER_USER }}"
+          $ServerPath = "${{ vars.SERVER_PATH }}"
+          $PrivateKey = "${{ secrets.DEPLOY_KEY }}"
+          
+          # Create temporary private key file
+          $TempKeyPath = "$env:TEMP\deploy_key.pem"
+          Set-Content -Path $TempKeyPath -Value $PrivateKey -NoNewline
+          & icacls $TempKeyPath /inheritance:r /grant:r "SYSTEM:F"
+
+          # Use SCP to transfer files
+          $SourcePath = "${{ github.workspace }}\*"
+          & scp -i $TempKeyPath -r $SourcePath "$ServerUser@$ServerHost:$ServerPath"
+
+          # Clean up private key
+          Remove-Item -Path $TempKeyPath
+        shell: pwsh
