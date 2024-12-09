@@ -1,0 +1,27 @@
+name: Deploy portfolio to Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    # Specify your self-hosted runner label
+    runs-on: self-hosted
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Deploy to server
+      - name: Deploy to server
+        uses: burnett01/rsync-deployments@5.1
+        with:
+          switches: -avzr --delete
+          path: ./ # Path to your HTML and CSS files
+          remote_path: ${{ vars.SERVER_PATH }}
+          remote_host: ${{ vars.SERVER_HOST }}
+          remote_user: ${{ vars.SERVER_USER }}
+          ssh_private_key: ${{ secrets.DEPLOY_KEY }}
