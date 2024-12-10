@@ -30,7 +30,9 @@ jobs:
 
           # Use SCP to transfer files
           $SourcePath = "${{ github.workspace }}\*"
-          & scp -i $TempKeyPath -r $SourcePath "$ServerUser@$ServerHost:$ServerPath"
+          $RemotePath = "$ServerUser@$ServerHost:$ServerPath"
+          scp -i $TempKeyPath -r $SourcePath $RemotePath
 
           # Clean up private key
           Remove-Item -Path $TempKeyPath
+        shell: powershell
