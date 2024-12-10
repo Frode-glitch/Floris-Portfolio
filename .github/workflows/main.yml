@@ -24,19 +24,26 @@ jobs:
           $PrivateKey = "${{ secrets.DEPLOY_KEY }}"  # Inhoud van de private key
           
           # Tijdelijke locatie voor de private key
-          $TempKeyPath = "$env:TEMP\deploy_key.pem"
+          $TempKeyPath = "$env:TEMP/deploy_key.pem"
           
           # Private key opslaan in een bestand
           Set-Content -Path $TempKeyPath -Value $PrivateKey -NoNewline
           
           # Toegangsrechten aanpassen (beveiliging)
           & icacls $TempKeyPath /inheritance:r /grant:r "SYSTEM:F"
-      
-          # SCP uitvoeren om bestanden te kopiëren
-          $SourcePath = "${{ github.workspace }}\*"
+          
+          # Bron- en doelpad instellen
+          $SourcePath = "${{ github.workspace }}/*"
           $RemotePath = "${ServerUser}@${ServerHost}:${ServerPath}"
-          scp -i $TempKeyPath -r $SourcePath $RemotePath
-      
+          
+          # Log variabelen voor debuggen
+          Write-Host "SourcePath: $SourcePath"
+          Write-Host "RemotePath: $RemotePath"
+          Write-Host "KeyPath: $TempKeyPath"
+          
+          # SCP uitvoeren om bestanden te kopiëren
+          scp -i $TempKeyPath -r "$SourcePath" "$RemotePath"
+          
           # Opruimen van het tijdelijke bestand
           Remove-Item -Path $TempKeyPath
         shell: powershell
