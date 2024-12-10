@@ -34,7 +34,7 @@ jobs:
       
           # SCP uitvoeren om bestanden te kopiëren
           $SourcePath = "${{ github.workspace }}\*"
-          $RemotePath = "$ServerUser@$ServerHost:$ServerPath"
+          $RemotePath = "${ServerUser}@${ServerHost}:${ServerPath}"
           scp -i $TempKeyPath -r $SourcePath $RemotePath
       
           # Opruimen van het tijdelijke bestand
