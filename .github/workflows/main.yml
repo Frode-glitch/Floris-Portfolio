@@ -17,22 +17,26 @@ jobs:
       # Step 2: Deploy using PowerShell and SCP
       - name: Deploy to server using SCP
         run: |
-          # Define variables
+          # Variabelen instellen
           $ServerHost = "${{ vars.SERVER_HOST }}"
           $ServerUser = "${{ vars.SERVER_USER }}"
           $ServerPath = "${{ vars.SERVER_PATH }}"
-          $PrivateKey = "${{ secrets.DEPLOY_KEY }}"
+          $PrivateKey = "${{ secrets.DEPLOY_KEY }}"  # Inhoud van de private key
           
-          # Create temporary private key file
+          # Tijdelijke locatie voor de private key
           $TempKeyPath = "$env:TEMP\deploy_key.pem"
+          
+          # Private key opslaan in een bestand
           Set-Content -Path $TempKeyPath -Value $PrivateKey -NoNewline
+          
+          # Toegangsrechten aanpassen (beveiliging)
           & icacls $TempKeyPath /inheritance:r /grant:r "SYSTEM:F"
-
-          # Use SCP to transfer files
+      
+          # SCP uitvoeren om bestanden te kopiëren
           $SourcePath = "${{ github.workspace }}\*"
           $RemotePath = "$ServerUser@$ServerHost:$ServerPath"
           scp -i $TempKeyPath -r $SourcePath $RemotePath
-
-          # Clean up private key
+      
+          # Opruimen van het tijdelijke bestand
           Remove-Item -Path $TempKeyPath
         shell: powershell
