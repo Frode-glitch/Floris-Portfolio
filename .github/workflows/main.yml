@@ -22,6 +22,11 @@ jobs:
           $ServerUser = "${{ vars.SERVER_USER }}"
           $ServerPath = "${{ vars.SERVER_PATH }}"
           $PrivateKey = "${{ secrets.DEPLOY_KEY }}"  # Inhoud van de private key
+
+          Write-Host "ServerUser: $ServerUser"
+          Write-Host "ServerHost: $ServerHost"
+          Write-Host "ServerPath: $ServerPath"
+
           
           # Tijdelijke locatie voor de private key
           $TempKeyPath = "$env:TEMP/deploy_key.pem"
