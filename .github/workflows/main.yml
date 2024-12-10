@@ -34,4 +34,3 @@ jobs:
 
           # Clean up private key
           Remove-Item -Path $TempKeyPath
-        shell: pwsh
