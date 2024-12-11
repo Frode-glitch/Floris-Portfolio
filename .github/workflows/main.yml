@@ -28,10 +28,8 @@ jobs:
           Write-Host "ServerPath: $ServerPath"
 
           
-          # Tijdelijke locatie voor de private key
-          $TempKeyPath = "$env:TEMP/deploy_key.pem"
-          
-          # Private key opslaan in een bestand
+          # Gebruik een alternatieve map in de acties-map van de runner
+          $TempKeyPath = "${{ github.workspace }}\deploy_key.pem"
           Set-Content -Path $TempKeyPath -Value $PrivateKey -NoNewline
           
           # Toegangsrechten aanpassen (beveiliging)
