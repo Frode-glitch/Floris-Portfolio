@@ -24,9 +24,8 @@ jobs:
           # Use SCP to transfer files
           $KeyPath = "C:\keys\vpn_server_key.pem"
           $SourcePath = "${{ github.workspace }}\*"
-          $RemotePath = "$ServerUser@$ServerHost:$ServerPath"
+          $RemotePath = "${ServerUser}@${ServerHost}:${ServerPath}"
           
           # Use SCP with the stored private key
           scp -i $KeyPath -r $SourcePath $RemotePath
         shell: powershell
-
