@@ -16,16 +16,12 @@ jobs:
       # Step 2: Deploy using PowerShell and SCP
       - name: Deploy to server using SCP
         run: |
-          # Define variables
           $ServerHost = "${{ vars.SERVER_HOST }}"
           $ServerUser = "${{ vars.SERVER_USER }}"
           $ServerPath = "${{ vars.SERVER_PATH }}"
-          
-          # Use SCP to transfer files
-          $KeyPath = "C:\keys\vpn_server_key.pem"
+          $KeyPath = "C:\keys\id_rsa"
           $SourcePath = "${{ github.workspace }}\*"
-          $RemotePath = "${ServerUser}@${ServerHost}:${ServerPath}"
-          
-          # Use SCP with the stored private key
+          $RemotePath = "$($ServerUser)@$($ServerHost):$($ServerPath)"
           scp -i $KeyPath -r $SourcePath $RemotePath
         shell: powershell
+
